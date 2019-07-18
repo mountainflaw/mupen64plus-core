@@ -109,7 +109,7 @@ void init_host_disassembler(void)
     dis_info.disassembler_options = (char*) "i386,suffix";
     dis_info.read_memory_func = read_memory_func;
 
-#if defined(USE_LIBOPCODES_GE_2_29)
+
     /* libopcode >= 2.29 cannot use print_insn_i386 directly,
      * but can get it through disassembler function
      * whose prototype has been also updated to allow such selection. */
@@ -117,9 +117,6 @@ void init_host_disassembler(void)
             (dis_info.endian == BFD_ENDIAN_BIG),
             dis_info.mach,
             NULL);
-#else
-    disassemble = print_insn_i386;
-#endif
 }
 
 static void decode_recompiled(struct r4300_core* r4300, uint32_t addr)
